@@ -1,0 +1,30 @@
+[project]
+name = "commoncrawl-crawler"
+version = "0.1.0"
+dependencies = [
+    "bcp47==0.1.*",  # https://pydeps.com/project/bcp47/
+    "beautifulsoup4==4.14.*",  # https://pydeps.com/project/beautifulsoup4/
+    "loguru==0.7.*", # https://pypiplus.com/project/loguru/
+    "requests==2.32.*", # https://pypiplus.com/project/requests/
+    "warcio==1.7.*", # # https://pydeps.com/project/warcio/
+]
+requires-python = "==3.14.*" # https://www.python.org/downloads/
+description = "Test project to download data from https://commoncrawl.org/."
+license = "MIT"
+license-files = ["LICENSE"]
+
+
+[tool.ruff]
+fix = true
+lint.select = ["ALL"]
+show-fixes = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+
+[tool.uv]
+# uv can't verify the github-certificate if we are behind the SMA proxy,
+# raising an "invalid peer certificate: UnknownIssuer" error. This issue is
+# prevented by adding GitHub.com to the trusted hosts.
+allow-insecure-host = ["github.com"]

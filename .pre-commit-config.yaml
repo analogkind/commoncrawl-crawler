@@ -1,0 +1,56 @@
+# Author: Juergen Krawitz
+# Email: Juergen.Krawitz@SMA.de
+# Copyright: Copyright 2025, SMA Solar Technology AG
+# License: MIT
+
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.0
+    hooks:
+      # Run the formatter.
+      - id: ruff-format
+        name: "🐍 python: Format with Ruff"
+      # Run the linter.
+      - id: ruff
+        name: "🐍 python: Lint with Ruff"
+        args: [ --fix ]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-docstring-first
+        name: "🐍 python: No code before docstrings"
+      - id: debug-statements
+        name: "🐍 python: No debugger imports or breakpoint-calls"
+      - id: detect-private-key
+        name: "🔒 security: No private keys"
+      - id: check-ast
+        name: "📁 filesystem/content: .py-files are valid"
+      - id: check-toml
+        name: "📁 filesystem/content: .toml-files are valid"
+      - id: check-yaml
+        name: "📁 filesystem/content: .yaml-files are valid"
+      - id: end-of-file-fixer
+        name: "📁 filesystem/content: Files end in a newline"
+      - id: trailing-whitespace
+        name: "📁 filesystem/content: Trims trailing whitespace"
+      - id: check-case-conflict
+        name: "📁 filesystem/names: Check case sensitivity"
+      - id: check-illegal-windows-names
+        name: "📁 filesystem/names: Check Windows filenames"
+      - id: name-tests-test
+        name: "📁 filesystem/names: Check test file names"
+      - id: check-symlinks
+        name: "📁 filesystem/symlinks: Validate symlinks"
+      - id: destroyed-symlinks
+        name: "📁 filesystem/symlinks: No broken symlinks"
+      - id: check-added-large-files
+        name: "🌳 git: No giant files"
+      - id: forbid-submodules
+        name: "🌳 git: No git submodules"
+      - id: no-commit-to-branch
+        name: "🌳 git: Protect the develop branch"
+        args: [ --branch, develop ]
+      - id: check-merge-conflict
+        name: "🌳 git: No unresolved merge conflict strings"
